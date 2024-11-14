@@ -2,6 +2,8 @@ package spring.model;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "cars")
@@ -14,7 +16,15 @@ public class Car {
     @Column(name = "mele_age")
     private int mileage;
 
+    private static List<Car> carList;
+
     public Car() {
+        Car lada = new Car("Ваз 2101", 120000);
+        Car bmw = new Car("525", 750000);
+        Car toyota = new Car("Camry", 320000);
+        Car kitai = new Car("JAC", 5000);
+        Car electric = new Car("Tesla", 80000);
+        carList = List.of(lada, bmw, toyota, kitai, electric);
     }
 
     public Car(String model, int mileage) {
@@ -45,6 +55,11 @@ public class Car {
     public void setMileage(int mileage) {
         this.mileage = mileage;
     }
+
+    public static List<Car> getCarList() {
+        return carList;
+    }
+
 
     @Override
     public String toString() {
