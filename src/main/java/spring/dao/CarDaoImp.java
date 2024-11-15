@@ -28,4 +28,9 @@ public class CarDaoImp implements CarDao {
     public List<Car> getCars(int quantity) {
         return Car.getCarList().stream().limit(quantity).collect(Collectors.toList());
     }
+
+    @Override
+    public List<Car> getAllCars() {
+        return Car.getCarList();
+    }
 }

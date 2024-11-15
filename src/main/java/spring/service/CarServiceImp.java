@@ -11,37 +11,18 @@ import java.util.List;
 @Service
 public class CarServiceImp implements CarService {
 
-    @Autowired
+
     private CarDaoImp carDao;
 
-
-    @Override
-    @Transactional
-    public void addCar(Car car) {
-        carDao.addCar(car);
+    public CarServiceImp(CarDaoImp carDao) {
+        this.carDao = carDao;
     }
 
     @Override
     @Transactional
     public List<Car> getCars(int quantity) {
-        return carDao.getCars(quantity);
+        return quantity == 0 ? carDao.getAllCars() : carDao.getCars(quantity);
     }
 
-    @Override
-    public List<Car> getCarsView(String count) {
-        List<Car> carList = null;
-        if (count != null) {
-            Integer quantity = Integer.parseInt(count);
-            if (quantity > 0) {
-                if (quantity >= 5) {
-                    carList = getCars(5);
-                } else {
-                    carList = getCars(quantity);
-                }
-            }
-        } else {
-            carList = getCars(0);
-        }
-        return carList;
-    }
+
 }

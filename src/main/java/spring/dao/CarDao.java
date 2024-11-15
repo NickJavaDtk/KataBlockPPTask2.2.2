@@ -12,4 +12,6 @@ public interface CarDao {
 
     List<Car> getCars(int quantity);
 
+    List<Car> getAllCars();
+
 }

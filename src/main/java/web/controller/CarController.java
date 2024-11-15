@@ -25,8 +25,15 @@ public class CarController {
 
     @GetMapping
     public String getViewCars(@RequestParam(value = "count", required = false) String count, Model model) {
-        List<Car> carList = service.getCarsView(count);
-        model.addAttribute("list", carList);
+        List<Car> carList = null;
+        if (count == null) {
+            carList = service.getCars(0);
+            model.addAttribute("list", carList);
+        } else {
+            carList = service.getCars(Integer.parseInt(count));
+            model.addAttribute("list", carList);
+        }
+
         return "viewcar";
     }
 
